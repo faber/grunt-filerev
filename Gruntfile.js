@@ -57,6 +57,17 @@ module.exports = function (grunt) {
         cwd: 'test/fixtures',
         src: ['*.js'],
         dest: 'test/tmp/withSourceMaps'
+      },
+      withVersion: {
+        options: {
+          version: 1
+        },
+        src: ['test/fixtures/another.png'],
+        dest: 'test/tmp/versioned'
+      },
+      withoutVersion: {
+        src: '<%= filerev.withVersion.src %>',
+        dest: '<%= filerev.withVersion.dest %>'
       }
     },
     simplemocha: {

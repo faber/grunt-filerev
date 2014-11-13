@@ -52,3 +52,7 @@ it('should revision .js file ok without any .map', function () {
   assert(revisioned === original);
 });
 
+it('should accept a version that forces a new hash', function() {
+  var revved = fs.readdirSync('test/tmp/versioned');
+  assert(revved.length === 2);
+});

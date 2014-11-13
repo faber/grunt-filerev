@@ -9,7 +9,8 @@ module.exports = function (grunt) {
   grunt.registerMultiTask('filerev', 'File revisioning based on content hashing', function () {
     var options = this.options({
       algorithm: 'md5',
-      length: 8
+      length: 8,
+      version: null
     });
     var target = this.target;
     var filerev = grunt.filerev || {summary: {}};
@@ -43,7 +44,9 @@ module.exports = function (grunt) {
         }
 
         var dirname;
-        var hash = crypto.createHash(options.algorithm).update(fs.readFileSync(file)).digest('hex');
+        var contents = fs.readFileSync(file);
+        if (options.version) { contents += options.version; }
+        var hash = crypto.createHash(options.algorithm).update(contents).digest('hex');
         var suffix = hash.slice(0, options.length);
         var ext = path.extname(file);
         var newName = [path.basename(file, ext), suffix, ext.slice(1)].join('.');
