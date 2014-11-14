@@ -53,6 +53,13 @@ Default: `8`
 
 The number of characters of the file hash to prefix the file name with.
 
+#### options.version
+
+Type: `string`  
+Default: `null`
+
+Used in hash generation.  Changing this string forces the generation of new hashes.
+
 ### Destination
 
 It will overwrite the `src` files if you don't specify a `dest`:
